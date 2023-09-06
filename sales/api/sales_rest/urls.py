@@ -6,6 +6,7 @@ from .views import (
     list_customers,
     show_customer,
     list_sales,
+    show_sale,
 )
 
 
@@ -26,5 +27,10 @@ urlpatterns = [
         "sales/",
         list_sales,
         name="list_sales",
+    ),
+    path(
+        "sales/<int:id>/",
+        show_sale,
+        name="show_sale",
     ),
 ]

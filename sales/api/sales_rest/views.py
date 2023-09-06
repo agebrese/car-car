@@ -17,14 +17,19 @@ class SalesPersonEncoder(ModelEncoder):
     properties = ["first_name", "last_name", "employee_id"]
 
 
-class SaleEncoder(ModelEncoder):
-    model = Sale
-    properties = ["VIN", "salesperson", "customer", "price"]
-
-
 class CustomerEncoder(ModelEncoder):
     model = Customer
     properties = ["first_name", "last_name", "address", "phone_number"]
+
+
+class SaleEncoder(ModelEncoder):
+    model = Sale
+    properties = ["automobile", "salesperson", "customer", "price"]
+    encoders = {
+        "automobile": AutomobileVOEncoder(),
+        "salesperson": SalesPersonEncoder(),
+        "customer": CustomerEncoder(),
+    }
 
 
 @require_http_methods(["GET", "POST"])
@@ -101,20 +106,62 @@ def show_customer(request, id):
 
 @require_http_methods(["GET", "POST"])
 def list_sales(request):
+    if request.method == "POST":
+        content = json.loads(request.body)
+
+        try:
+            vin = content["automobile"]
+            automobile = AutomobileVO.objects.get(vin=vin)
+            automobile.sold = True
+            automobile.save()
+            content["automobile"] = automobile
+
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid vin"},
+                status=400,
+            )
+        try:
+            employee_id = content["salesperson"]
+            salesperson = Salesperson.objects.get(employee_id=employee_id)
+            content["salesperson"] = salesperson
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid employee_id"},
+                status=400,
+            )
+        try:
+            phone_number = content["customer"]
+            customer = Customer.objects.get(phone_number=phone_number)
+            content["customer"] = customer
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid phone number"},
+                status=400,
+            )
+
+        sale = Sale.objects.create(**content)
+        return JsonResponse(
+            sale,
+            encoder=SaleEncoder,
+            safe=False,
+        )
+
     if request.method == "GET":
         sales = Sale.objects.all()
         return JsonResponse({"sales": sales}, encoder=SaleEncoder)
 
-    elif request.method == "POST":
+
+@require_http_methods(["DELETE"])
+def show_sale(request, id):
+    if request.method == "DELETE":
         try:
-            content = json.loads(request.body)
-            sale = Sale.objects.create(**content)
+            sale = Sale.objects.get(id=id)
+            sale.delete()
             return JsonResponse(
                 sale,
                 encoder=SaleEncoder,
                 safe=False,
             )
-        except:
-            response = JsonResponse({"message": "Could not create the sale"})
-            response.status_code = 400
-            return response
+        except Sale.DoesNotExist:
+            return JsonResponse({"message": "Does not exist"})

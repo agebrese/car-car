@@ -22,10 +22,10 @@ class AutomobileVO(models.Model):
         return self.vin
 
 
-class Appiontment(models.Model):
+class Appointment(models.Model):
     date_time = models.DateTimeField()
-    resaon = models.CharField(max_length=200)
-    status = models.CharField(max_length=200)
+    reason = models.CharField(max_length=200)
+    status = models.CharField(max_length=200, default="Scheduled")
     vin = models.CharField(max_length=200)
     customer = models.CharField(max_length=200)
 

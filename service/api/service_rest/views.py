@@ -29,7 +29,8 @@ class TechnicianDetailEncoder(ModelEncoder):
 class AppointmentListEncoder(ModelEncoder):
     model = Appointment
     properties = [
-        "date_time",
+        "date",
+        "time",
         "reason",
         "status",
         "vin",
@@ -93,7 +94,7 @@ def api_show_appointments(request):
             encoder=AppointmentListEncoder
         )
     else:
-        try:
+        # try:
             content = json.loads(request.body)
             technician_id = content["technician"]
             technician = Technician.objects.get(id=technician_id)
@@ -104,12 +105,12 @@ def api_show_appointments(request):
                 encoder=AppointmentListEncoder,
                 safe=False
             )
-        except:
-            response = JsonResponse(
-                {"message": "Could not create the appointment"}
-            )
-            response.status_code = 400
-            return response
+        # except:
+        #     response = JsonResponse(
+        #         {"message": "Could not create the appointment"}
+        #     )
+        #     response.status_code = 400
+        #     return response
 
 
 @require_http_methods(["DELETE", "GET"])

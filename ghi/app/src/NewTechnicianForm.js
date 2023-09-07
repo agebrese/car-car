@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 
 function NewTechnicianForm() {
     const [first_name, setFirstName] = useState('');

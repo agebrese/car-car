@@ -28,7 +28,7 @@ function AutomobileForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const modelURL = 'http://localhost:8100/api/automobiles/'
+        const autoURL = 'http://localhost:8100/api/automobiles/'
 
         const fetchConfig = {
             method: 'post',
@@ -38,9 +38,9 @@ function AutomobileForm() {
             },
         };
 
-        const response = await fetch(modelURL, fetchConfig)
+        const response = await fetch(autoURL, fetchConfig)
         if (response.ok) {
-            const newModel = await response.json();
+            const newAuto = await response.json();
 
             setFormData({
                 color: '',
@@ -67,7 +67,7 @@ function AutomobileForm() {
                 <div className="offset-3 col-6" aria-hidden>
                     <div className="shadow p-4 mt-4">
                         <h1>Add An Automobile To Inventory</h1>
-                        <form onSubmit={handleSubmit} id="create-manufacturer-form">
+                        <form onSubmit={handleSubmit} id="create-automobile-form">
                             <div className="form-floating mb-3">
                                 <input value={formData.color} onChange={handleFormChange} placeholder="Color" required type="text" id="color" name="color" className="form-control" />
                                 <label htmlFor="color">Color</label>

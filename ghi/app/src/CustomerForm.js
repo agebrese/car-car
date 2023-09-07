@@ -15,7 +15,7 @@ function CustomerForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const salesPersonURL = 'http://localhost:8090/api/customers/';
+        const customerURL = 'http://localhost:8090/api/customers/';
 
         const fetchConfig = {
             method: 'post',
@@ -25,9 +25,9 @@ function CustomerForm() {
             },
         };
 
-        const response = await fetch(salesPersonURL, fetchConfig)
+        const response = await fetch(customerURL, fetchConfig)
         if (response.ok) {
-            const newSalesPerson = await response.json();
+            const newCustomer = await response.json();
 
             setFormData({
                 first_name: '',
@@ -53,7 +53,7 @@ function CustomerForm() {
                 <div className="offset-3 col-6" aria-hidden>
                     <div className="shadow p-4 mt-4">
                         <h1>Add A Customer</h1>
-                        <form onSubmit={handleSubmit} id="create-shoe-form">
+                        <form onSubmit={handleSubmit} id="create-customer-form">
                             <div className="form-floating mb-3">
                                 <input value={formData.first_name} onChange={handleFormChange} placeholder="First Name" required type="text" id="first_name" name="first_name" className="form-control" />
                                 <label htmlFor="first_name">First Name</label>

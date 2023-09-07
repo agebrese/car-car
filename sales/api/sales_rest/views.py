@@ -106,7 +106,11 @@ def show_customer(request, id):
 
 @require_http_methods(["GET", "POST"])
 def list_sales(request):
-    if request.method == "POST":
+    if request.method == "GET":
+        sales = Sale.objects.all()
+        return JsonResponse({"sales": sales}, encoder=SaleEncoder)
+
+    elif request.method == "POST":
         content = json.loads(request.body)
 
         try:
@@ -146,10 +150,6 @@ def list_sales(request):
             encoder=SaleEncoder,
             safe=False,
         )
-
-    if request.method == "GET":
-        sales = Sale.objects.all()
-        return JsonResponse({"sales": sales}, encoder=SaleEncoder)
 
 
 @require_http_methods(["DELETE"])

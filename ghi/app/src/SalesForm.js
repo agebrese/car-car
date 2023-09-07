@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 function SaleForm() {
+    const [sales, setSales] = useState([]);
     const [autos, setAutomobile] = useState([]);
     const [customer, setCustomer] = useState([]);
     const [salesperson, setSalesperson] = useState([]);
@@ -22,6 +23,25 @@ function SaleForm() {
             setAutomobile(data.autos)
         }
     }
+
+
+    const getSalesData = async () => {
+        const url = "http://localhost:8090/api/sales/"
+
+        const response = await fetch(url);
+
+
+        if (response.ok) {
+            const data = await response.json();
+            setSales(data.sales)
+        }
+
+    }
+
+    const salesList = sales.map(sale => {
+        return sale.automobile.vin
+    })
+
 
     const getCustomerData = async () => {
         const url = "http://localhost:8090/api/customers/"
@@ -53,7 +73,8 @@ function SaleForm() {
         getAutoData();
         getCustomerData();
         getSalesPersonData();
-    }, []);
+        getSalesData();
+    }, [sales]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -103,12 +124,14 @@ function SaleForm() {
                                 <label htmlFor="automobile" className="form-label">AutoMobile VIN</label>
                                 <select onChange={handleFormChange} value={formData.automobile} required id="automobile" name="automobile" className="form-select">
                                     <option value="">Choose an AutoMobile VIN</option>
-                                    {autos.map(automobile => {
-                                        return (
-                                            <option key={automobile.vin} value={automobile.vin}>
-                                                {automobile.vin}
-                                            </option>
-                                        )
+                                    {autos.map((automobile) => {
+                                        if (salesList.includes(automobile.vin) == false) {
+                                            return (
+                                                <option key={automobile.vin} value={automobile.vin}>
+                                                    {automobile.vin}
+                                                </option>
+                                            )
+                                        }
                                     })}
                                 </select>
                                 <label htmlFor="customer" className="form-label">Customer</label>

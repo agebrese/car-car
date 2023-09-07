@@ -9,7 +9,7 @@ function Nav() {
         <NavLink className="navbar-brand" to="/manufacturer/create">Create A Manufacturer</NavLink>
         <NavLink className="navbar-brand" to="/sale">Sales</NavLink>
         <NavLink className="navbar-brand" to="/sale/create">Add A Sale</NavLink>
-        <NavLink className="navbar-brand" to="/sales/history">Sales History</NavLink>
+        <NavLink className="navbar-brand" to="/sale/history">Sales History</NavLink>
         <NavLink className="navbar-brand" to="/salesperson">Salespeople</NavLink>
         <NavLink className="navbar-brand" to="/salesperson/create">Add A Salesperson</NavLink>
         <NavLink className="navbar-brand" to="/customer">Customers</NavLink>

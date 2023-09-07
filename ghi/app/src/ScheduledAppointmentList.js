@@ -47,6 +47,7 @@ function ScheduledAppointmentList() {
                 <thead>
                     <tr>
                         <th>VIN</th>
+                        <th>Is VIP?</th>
                         <th>Customer</th>
                         <th>Date</th>
                         <th>Time</th>
@@ -60,6 +61,7 @@ function ScheduledAppointmentList() {
                         return (
                             <tr key={ appointment.id }>
                                 <td>{ appointment.vin }</td>
+                                <td></td>
                                 <td>{ appointment.customer }</td>
                                 <td>{ appointment.date }</td>
                                 <td>{ appointment.time }</td>

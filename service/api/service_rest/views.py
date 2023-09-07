@@ -41,7 +41,7 @@ class AppointmentListEncoder(ModelEncoder):
         "technician": TechnicianDetailEncoder(),
     }
     def get_extra_data(self, o):
-        return {"technician": o.technician.id}
+        return {"technician": o.technician.first_name}
 
 
 
@@ -64,7 +64,7 @@ def api_list_technicians(request):
             )
         except:
             response = JsonResponse(
-                {"message": "Could not create the technician"}
+                {"message": "Could not create the technician. Employee ID is unique, maybe try a new ID"}
             )
             response.status_code = 400
             return response
@@ -75,7 +75,6 @@ def api_show_technician(request, pk):
     if request.method == "DELETE":
         try:
             technician = Technician.objects.filter(id=pk).delete()
-            # NOTE IN THE ABOVE LINE ID MAY NEED TO GET TURNED INTO EMPLOYEE_ID DEPENDING HOW WE TRACK TECHS
             return JsonResponse(
             technician,
             encoder = TechnicianDetailEncoder,

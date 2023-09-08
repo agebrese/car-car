@@ -13,7 +13,6 @@ function NewTechnicianForm() {
         data.first_name = first_name;
         data.last_name = last_name;
         data.employee_id = employee_id;
-        console.log(data)
 
         const technicianUrl = 'http://localhost:8080/api/technicians/';
         const fetchConfig = {
@@ -27,7 +26,6 @@ function NewTechnicianForm() {
         const response = await fetch(technicianUrl, fetchConfig);
         if (response.ok) {
             const newTechnician = await response.json();
-            console.log(newTechnician)
 
             setFirstName('');
             setLastName('');

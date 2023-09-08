@@ -33,7 +33,6 @@ function NewAppointmentForm() {
         data.customer = customer;
         data.technician = technician;
 
-        console.log(data)
 
         const appointmentUrl = 'http://localhost:8080/api/appointments/';
         const fetchConfig = {
@@ -47,7 +46,6 @@ function NewAppointmentForm() {
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
             const newAppointment = await response.json();
-            console.log(newAppointment)
 
             setDate('');
             setTime('');

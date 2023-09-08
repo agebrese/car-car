@@ -10,7 +10,7 @@ function ScheduledAppointmentList() {
 
         if (response.ok) {
             const data = await response.json();
-
+            console.log(data)
             setAppointments(data.appointments)
         }
     }
@@ -30,7 +30,6 @@ function ScheduledAppointmentList() {
     const salesVinList = sales.map(sale => {
         return sale.automobile.vin
     })
-
 
     const cancelAppointment = async (id) => {
         const response = await fetch('http://localhost:8080/api/appointments/' + id + '/cancel/', {
@@ -52,6 +51,11 @@ function ScheduledAppointmentList() {
             getData()
         }
     }
+
+
+
+
+
     useEffect(() => {
         getData();
         getSoldData()

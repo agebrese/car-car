@@ -8,7 +8,6 @@ function ModelList() {
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             setModels(data.models)
         }
     }

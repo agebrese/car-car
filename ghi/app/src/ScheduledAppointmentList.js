@@ -6,11 +6,9 @@ function ScheduledAppointmentList() {
 
     const getData = async () => {
         const response = await fetch('http://localhost:8080/api/appointments/');
-        console.log(response)
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             setAppointments(data.appointments)
         }
     }

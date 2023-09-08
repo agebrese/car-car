@@ -6,6 +6,7 @@ import json
 
 from .models import Technician, Appointment
 
+
 # Create your views here.
 class TechnicianListEncoder(ModelEncoder):
     model = Technician
@@ -15,6 +16,7 @@ class TechnicianListEncoder(ModelEncoder):
         "employee_id",
         "id",
     ]
+
 
 class TechnicianDetailEncoder(ModelEncoder):
     model = Technician
@@ -41,31 +43,26 @@ class AppointmentListEncoder(ModelEncoder):
     encoders = {
         "technician": TechnicianDetailEncoder(),
     }
+
     def get_extra_data(self, o):
         return {"technician": o.technician.first_name}
-
 
 
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
-        return JsonResponse (
-            {"technicians": technicians},
-            encoder = TechnicianListEncoder
-        )
+        return JsonResponse({"technicians": technicians}, encoder=TechnicianListEncoder)
     else:
         try:
             content = json.loads(request.body)
             technician = Technician.objects.create(**content)
-            return JsonResponse(
-                technician,
-                encoder=TechnicianListEncoder,
-                safe=False
-            )
+            return JsonResponse(technician, encoder=TechnicianListEncoder, safe=False)
         except:
             response = JsonResponse(
-                {"message": "Could not create the technician. Employee ID is unique, maybe try a new ID"}
+                {
+                    "message": "Could not create the technician. Employee ID is unique, maybe try a new ID"
+                }
             )
             response.status_code = 400
             return response
@@ -76,11 +73,7 @@ def api_show_technician(request, pk):
     if request.method == "DELETE":
         try:
             technician = Technician.objects.filter(id=pk).delete()
-            return JsonResponse(
-            technician,
-            encoder = TechnicianDetailEncoder,
-            safe=False
-            )
+            return JsonResponse(technician, encoder=TechnicianDetailEncoder, safe=False)
         except Technician.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
 
@@ -90,8 +83,7 @@ def api_show_appointments(request):
     if request.method == "GET":
         appointments = Appointment.objects.all()
         return JsonResponse(
-            {"appointments": appointments},
-            encoder=AppointmentListEncoder
+            {"appointments": appointments}, encoder=AppointmentListEncoder
         )
     else:
         try:
@@ -118,11 +110,7 @@ def api_appointment(request, pk):
     if request.method == "GET":
         try:
             appointment = Appointment.objects.get(id=pk)
-            return JsonResponse(
-                appointment,
-                encoder=AppointmentListEncoder,
-                safe=False
-            )
+            return JsonResponse(appointment, encoder=AppointmentListEncoder, safe=False)
         except Appointment.DoesNotExist:
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
@@ -130,14 +118,9 @@ def api_appointment(request, pk):
     else:
         try:
             appointment = Appointment.objects.filter(id=pk).delete()
-            return JsonResponse(
-            appointment,
-            encoder = AppointmentListEncoder,
-            safe=False
-            )
+            return JsonResponse(appointment, encoder=AppointmentListEncoder, safe=False)
         except Appointment.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
-
 
 
 @require_http_methods(["PUT"])
@@ -145,11 +128,7 @@ def cancel_appointment(request, pk):
     appointment = Appointment.objects.get(id=pk)
     appointment.status = "Canceled"
     appointment.save()
-    return JsonResponse(
-        appointment,
-        encoder=AppointmentListEncoder,
-        safe=False
-    )
+    return JsonResponse(appointment, encoder=AppointmentListEncoder, safe=False)
 
 
 @require_http_methods(["PUT"])
@@ -157,8 +136,4 @@ def finished_appointment(request, pk):
     appointment = Appointment.objects.get(id=pk)
     appointment.status = "Finished"
     appointment.save()
-    return JsonResponse(
-        appointment,
-        encoder=AppointmentListEncoder,
-        safe=False
-    )
+    return JsonResponse(appointment, encoder=AppointmentListEncoder, safe=False)

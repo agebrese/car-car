@@ -36,13 +36,13 @@ function ServiceHistory() {
 
     return (
         <>
-        <form>
-            <input type="text"
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder='Search VINs'
-            />
-        </form>
-        <table className="table table-striped">
+            <form>
+                <input type="text"
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder='Search VINs'
+                />
+            </form>
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>VIN</th>

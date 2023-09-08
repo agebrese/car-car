@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 function AutomobileList() {
     const [automobiles, setAutomobiles] = useState([]);
-    // const [sold, setSold] = useState([]);
+    const [sales, setSales] = useState([]);
 
     const getData = async () => {
         const response = await fetch('http://localhost:8100/api/automobiles/');
@@ -13,18 +13,22 @@ function AutomobileList() {
         }
     }
 
-    // const getSoldData = async () => {
-    //     const response = await fetch('http://localhost:8090/api/sales/');
+    const getSoldData = async () => {
+        const response = await fetch('http://localhost:8090/api/sales/');
 
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         setSold(data.autos.sold)
-    //     }
-    // }
+        if (response.ok) {
+            const data = await response.json();
+            setSales(data.sales)
+        }
+    }
+
+    const salesVinList = sales.map(sale => {
+        return sale.automobile.vin
+    })
 
     useEffect(()=>{
         getData();
-        // getSoldData()
+        getSoldData()
     }, [])
 
     return (
@@ -41,6 +45,7 @@ function AutomobileList() {
             </thead>
             <tbody>
                 {automobiles.map(auto => {
+                    if (salesVinList.includes(auto.vin)) {
                     return (
                         <tr key={ auto.id }>
                             <td>{ auto.vin }</td>
@@ -48,9 +53,21 @@ function AutomobileList() {
                             <td>{ auto.year }</td>
                             <td>{ auto.model.name }</td>
                             <td>{ auto.model.manufacturer.name }</td>
-                            {/* <td>{ auto.sold }</td> */}
+                            <td>Yes</td>
                         </tr>
                     );
+                    } else {
+                        return (
+                            <tr key={ auto.id }>
+                            <td>{ auto.vin }</td>
+                            <td>{ auto.color }</td>
+                            <td>{ auto.year }</td>
+                            <td>{ auto.model.name }</td>
+                            <td>{ auto.model.manufacturer.name }</td>
+                            <td>No</td>
+                        </tr>
+                        )
+                    }
                 })}
 
             </tbody>

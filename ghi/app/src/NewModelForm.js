@@ -15,7 +15,7 @@ function NewModelForm() {
             setManufacturers(data.manufacturers);
         }
     }
-    useEffect (() => {
+    useEffect(() => {
         fetchData();
     }, []);
 
@@ -39,7 +39,7 @@ function NewModelForm() {
         data.name = name;
         data.picture_url = picture_url;
         data.manufacturer_id = manufacturer_id;
-        console.log(data)
+
 
         const modelUrl = 'http://localhost:8100/api/models/';
         const fetchConfig = {
@@ -53,7 +53,7 @@ function NewModelForm() {
         const response = await fetch(modelUrl, fetchConfig);
         if (response.ok) {
             const newModel = await response.json();
-            console.log(newModel)
+
 
             setName('');
             setPicture_Url('');
@@ -68,11 +68,11 @@ function NewModelForm() {
                     <h1>Add a New Model</h1>
                     <form onSubmit={handleSubmit} id="newModelForm">
                         <div className="form-floating mb-3">
-                            <input onChange={handleNameChange} value={name} placeholder="Model Name" required type="text" id="name" name="name" className="form-control"/>
+                            <input onChange={handleNameChange} value={name} placeholder="Model Name" required type="text" id="name" name="name" className="form-control" />
                             <label htmlFor="name">Model Name</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input onChange={handleUrlChange} value={picture_url} placeholder="Picture URL" required type="url" id="picture_url" name="picture_url" className="form-control"/>
+                            <input onChange={handleUrlChange} value={picture_url} placeholder="Picture URL" required type="url" id="picture_url" name="picture_url" className="form-control" />
                             <label htmlFor="picture_url">Picture URL</label>
                         </div>
                         <div className="mb-3">
@@ -92,7 +92,7 @@ function NewModelForm() {
                     </form>
                 </div>
             </div>
-      </div>
+        </div>
     )
 }
 

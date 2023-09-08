@@ -13,19 +13,19 @@ function ServiceHistory() {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getData()
     }, [])
 
     return (
         <>
-        <form>
-            <input type="text"
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder='Search VINs'
-            />
-        </form>
-        <table className="table table-striped">
+            <form>
+                <input type="text"
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder='Search VINs'
+                />
+            </form>
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>VIN</th>
@@ -40,18 +40,18 @@ function ServiceHistory() {
                 </thead>
                 <tbody>
                     {appointments.filter((appointment) => {
-                        return search.toLowerCase() === '' ? appointment : appointment.vin.toLowerCase().includes(search)
+                        return search === '' ? appointment : appointment.vin.includes(search.toUpperCase())
                     }).map(appointment => {
                         return (
-                            <tr key={ appointment.id }>
-                                <td>{ appointment.vin }</td>
+                            <tr key={appointment.id}>
+                                <td>{appointment.vin}</td>
                                 <td></td>
-                                <td>{ appointment.customer }</td>
-                                <td>{ appointment.date }</td>
-                                <td>{ appointment.time }</td>
-                                <td>{ appointment.technician }</td>
-                                <td>{ appointment.reason }</td>
-                                <td>{ appointment.status }</td>
+                                <td>{appointment.customer}</td>
+                                <td>{appointment.date}</td>
+                                <td>{appointment.time}</td>
+                                <td>{appointment.technician}</td>
+                                <td>{appointment.reason}</td>
+                                <td>{appointment.status}</td>
                             </tr>
                         );
                     })}

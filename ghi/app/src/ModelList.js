@@ -13,7 +13,7 @@ function ModelList() {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getData()
     }, [])
 
@@ -30,11 +30,11 @@ function ModelList() {
             <tbody>
                 {models.map(model => {
                     return (
-                        <tr key={ model.id }>
-                            <td>{ model.name }</td>
-                            <td>{ model.manufacturer.name }</td>
+                        <tr key={model.id}>
+                            <td>{model.name}</td>
+                            <td>{model.manufacturer.name}</td>
                             <td>
-                                <img src={model.picture_url} alt="car"></img>
+                                <img width="250" src={model.picture_url} alt="car"></img>
                             </td>
                         </tr>
                     );

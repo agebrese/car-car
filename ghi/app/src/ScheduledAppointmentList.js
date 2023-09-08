@@ -34,7 +34,8 @@ function ScheduledAppointmentList() {
         });
 
         if (response.ok) {
-            getData()
+            getData();
+            getSoldData();
         }
     }
 
@@ -45,7 +46,8 @@ function ScheduledAppointmentList() {
         });
 
         if (response.ok) {
-            getData()
+            getData();
+            getSoldData();
         }
     }
 
@@ -89,7 +91,7 @@ function ScheduledAppointmentList() {
                                 </td>
                             </tr>
                         );
-                    } else {
+                        } else if (appointment.status == "Scheduled") {
                         return (
                             <tr key={ appointment.id }>
                                 <td>{ appointment.vin }</td>
@@ -103,7 +105,8 @@ function ScheduledAppointmentList() {
                                     <button className="btn btn-primary" onClick={()=>cancelAppointment(appointment.id)}>Cancel</button>
                                     <button className="btn btn-primary" onClick={()=>finishAppointment(appointment.id)}>Finish</button>
                                 </td>
-                            </tr>);
+                            </tr>
+                        );
 
                     }
                     })}

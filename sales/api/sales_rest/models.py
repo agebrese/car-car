@@ -31,17 +31,17 @@ class Customer(models.Model):
 class Sale(models.Model):
     automobile = models.ForeignKey(
         AutomobileVO,
-        related_name="sale",
+        related_name="autmobile",
         on_delete=models.CASCADE,
     )
     salesperson = models.ForeignKey(
         Salesperson,
-        related_name="sale",
+        related_name="salesperson",
         on_delete=models.CASCADE,
     )
     customer = models.ForeignKey(
         Customer,
-        related_name="sale",
+        related_name="customer",
         on_delete=models.CASCADE,
     )
     price = models.CharField(max_length=10)

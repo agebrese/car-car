@@ -37,7 +37,8 @@ function ScheduledAppointmentList() {
         });
 
         if (response.ok) {
-            getData()
+            getData();
+            getSoldData();
         }
     }
 
@@ -48,7 +49,8 @@ function ScheduledAppointmentList() {
         });
 
         if (response.ok) {
-            getData()
+            getData();
+            getSoldData();
         }
     }
 
@@ -106,7 +108,8 @@ function ScheduledAppointmentList() {
                                     <button className="btn btn-primary" onClick={() => cancelAppointment(appointment.id)}>Cancel</button>
                                     <button className="btn btn-primary" onClick={() => finishAppointment(appointment.id)}>Finish</button>
                                 </td>
-                            </tr>);
+                            </tr>
+                        );
 
                     }
                 })}

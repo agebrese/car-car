@@ -5,11 +5,9 @@ function TechnicianList() {
 
     const getData = async () => {
         const response = await fetch('http://localhost:8080/api/technicians/');
-        console.log(response)
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             setTechnicians(data.technicians)
         }
     }

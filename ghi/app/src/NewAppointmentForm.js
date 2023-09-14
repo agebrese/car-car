@@ -18,7 +18,7 @@ function NewAppointmentForm() {
             setTechnicians(data.technicians);
         }
     }
-    useEffect (() => {
+    useEffect(() => {
         fetchData();
     }, []);
 
@@ -89,23 +89,23 @@ function NewAppointmentForm() {
                     <h1>Schedule an Appointment</h1>
                     <form onSubmit={handleSubmit} id="newAppointmentForm">
                         <div className="form-floating mb-3">
-                            <input onChange={handleDateChange} value={date} placeholder="Date" required type="date" id="date" name="date" className="form-control"/>
+                            <input onChange={handleDateChange} value={date} placeholder="Date" required type="date" id="date" name="date" className="form-control" />
                             <label htmlFor="date">Date</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input onChange={handleTimeChange} value={time} placeholder="Time" required type="time" id="time" name="time" className="form-control"/>
+                            <input onChange={handleTimeChange} value={time} placeholder="Time" required type="time" id="time" name="time" className="form-control" />
                             <label htmlFor="time">Time</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input onChange={handleReasonChange} value={reason} placeholder="Reason" required type="text" id="reason" name="reason" className="form-control"/>
+                            <input onChange={handleReasonChange} value={reason} placeholder="Reason" required type="text" id="reason" name="reason" className="form-control" />
                             <label htmlFor="reason">Reason</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input onChange={handleVinChange} value={vin} placeholder="VIN" required type="text" id="vin" name="vin" className="form-control"/>
+                            <input onChange={handleVinChange} value={vin} placeholder="VIN" required type="text" id="vin" name="vin" className="form-control" />
                             <label htmlFor="vin">VIN</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input onChange={handleCustomerChange} value={customer} placeholder="Customer Name" required type="text" id="customer" name="customer" className="form-control"/>
+                            <input onChange={handleCustomerChange} value={customer} placeholder="Customer Name" required type="text" id="customer" name="customer" className="form-control" />
                             <label htmlFor="customer">Customer</label>
                         </div>
                         <div className="mb-3">

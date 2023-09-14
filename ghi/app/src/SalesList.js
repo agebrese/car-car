@@ -21,6 +21,7 @@ function SalesList() {
 
     return (
         <>
+            <h1 className='mt-5'>Sales List</h1>
             <table className="table table-bordered table-hover mt-5">
                 <thead>
                     <tr>

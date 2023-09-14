@@ -74,7 +74,7 @@ function SaleForm() {
         getCustomerData();
         getSalesPersonData();
         getSalesData();
-    }, [sales]);
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();

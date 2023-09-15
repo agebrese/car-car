@@ -12,7 +12,7 @@ class AutomobileVO(models.Model):
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    employee_id = models.CharField(max_length=10, unique=True)
+    employee_id = models.PositiveSmallIntegerField(unique=True)
 
     def get_api_url(self):
         return reverse("show_salesperson", kwargs={"id": self.id})
@@ -22,7 +22,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=12, unique=True)
+    phone_number = models.CharField(max_length=14, unique=True)
 
     def get_api_url(self):
         return reverse("show_customer", kwargs={"id": self.id})
@@ -44,7 +44,7 @@ class Sale(models.Model):
         related_name="customer",
         on_delete=models.CASCADE,
     )
-    price = models.CharField(max_length=10)
+    price = models.PositiveIntegerField()
 
     def get_api_url(self):
         return reverse("show_sale", kwargs={"id": self.id})

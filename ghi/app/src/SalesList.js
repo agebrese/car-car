@@ -40,7 +40,7 @@ function SalesList() {
                                 <td className='text-center align-middle'>{sale.salesperson.first_name} {sale.salesperson.last_name}</td>
                                 <td className='text-center align-middle'>{sale.customer.first_name} {sale.customer.last_name}</td>
                                 <td className='text-center align-middle'>{sale.automobile.vin}</td>
-                                <td className='text-center align-middle'>{sale.price}</td>
+                                <td className='text-center align-middle'>${sale.price}</td>
                             </tr>
                         );
                     })}

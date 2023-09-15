@@ -61,7 +61,7 @@ function SalesPersonForm() {
                                 <label htmlFor="last_name">Last Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input value={formData.employee_id} onChange={handleFormChange} placeholder="Employee ID" required type="text" id="employee_id" name="employee_id" className="form-control" />
+                                <input value={formData.employee_id} onChange={handleFormChange} placeholder="Employee ID" required type="number" id="employee_id" name="employee_id" max={9999} className="form-control" />
                                 <label htmlFor="employee_id">Employee ID</label>
                             </div>
 

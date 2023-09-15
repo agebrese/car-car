@@ -5,21 +5,26 @@ function CustomerForm() {
         first_name: '',
         last_name: '',
         address: '',
-        phone_number: '',
     })
+    const [phone_number, setPhoneNumber] = useState('');
 
     useEffect(() => {
-
     }, []);
+
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         const customerURL = 'http://localhost:8090/api/customers/';
 
+        const data = {}
+        data.phone_number = phone_number
+        let subData = Object.assign(formData, data)
+        console.log(subData)
         const fetchConfig = {
             method: 'post',
-            body: JSON.stringify(formData),
+            body: JSON.stringify(subData),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -33,8 +38,9 @@ function CustomerForm() {
                 first_name: '',
                 last_name: '',
                 address: '',
-                phone_number: '',
             });
+            setPhoneNumber('')
+
         }
     }
     const handleFormChange = (e) => {
@@ -43,8 +49,27 @@ function CustomerForm() {
         setFormData({
             ...formData,
 
+
             [inputName]: value
         })
+    }
+
+    const handlePhoneNumberChange = (e) => {
+        const formattedPhoneNumber = formatPhoneNumber(e.target.value);
+
+        setPhoneNumber(formattedPhoneNumber)
+    }
+
+    function formatPhoneNumber(value) {
+        if (!value) return value
+        const phoneNumber = value.replace(/[^\d]/g, '')
+        const phoneNumberLength = phoneNumber.length
+        if (phoneNumberLength < 4) return phoneNumber;
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+        }
+
+        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`
     }
 
     return (
@@ -67,7 +92,8 @@ function CustomerForm() {
                                 <label htmlFor="address">Address</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input value={formData.phone_number} onChange={handleFormChange} placeholder="Phone Number" required type="text" id="phone_number" name="phone_number" className="form-control" />
+                                <input value={phone_number} onChange={handlePhoneNumberChange} placeholder="Phone Number" required type="text" id="phone_number" name="phone_number" className="form-control" maxLength={14} />
+
                                 <label htmlFor="phone_number">Phone Number</label>
                             </div>
 

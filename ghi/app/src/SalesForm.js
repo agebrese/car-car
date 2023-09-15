@@ -158,7 +158,7 @@ function SaleForm() {
                                 </select>
                                 <div className="form mb-3">
                                     <label htmlFor="price">Price</label>
-                                    <input value={formData.price} onChange={handleFormChange} placeholder="Price" required type="number" max={300000} id="price" name="price" className="form-control" />
+                                    <input value={formData.price} onChange={handleFormChange} placeholder="Price" required type="number" min={1} max={300000} id="price" name="price" className="form-control" />
 
                                 </div>
                             </div>

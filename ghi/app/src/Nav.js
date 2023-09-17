@@ -1,83 +1,71 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 function Nav() {
   return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-        <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">CarCar</NavLink>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/automobiles/all">Automobiles</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/automobile/create">Create An AutoMobile</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/models/all">Models</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/models/new">Create a Model</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/technicians/all">Technicians</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/technicians/new">Add a Technician</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/appointments/scheduled">Service Appointments</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/appointments/new">Schedule a Service Appointment</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/appointments/all">Service History</NavLink>
-              </li>
-            </ul>
-          </div>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+      <div className="container-fluid">
+        <NavLink className="navbar-brand" to="/">CarCar</NavLink>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li className='nav-item dropdown'>
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Inventory
+              </a>
+              <ul className='dropdown-menu' aria-labelledby="navbarDropdown">
+                <li><Link className="dropdown-item" to="/automobiles/all">Automobiles</Link></li>
+                <li><Link className="dropdown-item" to="/automobile/create">Create An AutoMobile</Link></li>
+                <li><Link className="dropdown-item" to="/models/all">Models</Link></li>
+                <li><Link className="dropdown-item" to="/models/new">Create a Model</Link></li>
+                <li><Link className="dropdown-item" to="/manufacturer">Manufacturers</Link></li>
+                <li><Link className="dropdown-item" to="/manufacturer/create">Create A Manufacturer</Link></li>
+              </ul>
+            </li>
+
+            <li className='nav-item dropdown'>
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Service
+              </a>
+              <ul className='dropdown-menu' aria-labelledby="navbarDropdown">
+                <li><Link className="dropdown-item" to="/appointments/scheduled">Service Appointments</Link></li>
+                <li><Link className="dropdown-item" to="/appointments/new">Schedule a Service Appointment</Link></li>
+                <li><Link className="dropdown-item" to="/appointments/all">Service History</Link></li>
+              </ul>
+            </li>
+
+            <li className='nav-item dropdown'>
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Employees
+              </a>
+              <ul className='dropdown-menu' aria-labelledby="navbarDropdown">
+                <li><Link className="dropdown-item" to="/technicians/all">Technicians</Link></li>
+                <li><Link className="dropdown-item" to="/technicians/new">Add a Technician</Link></li>
+                <li><Link className="dropdown-item" to="/salesperson">Salespeople</Link></li>
+                <li><Link className="dropdown-item" to="/salesperson/create">Add A Salesperson</Link></li>
+              </ul>
+            </li>
+
+            <li className='nav-item dropdown'>
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sales
+              </a>
+              <ul className='dropdown-menu' aria-labelledby="navbarDropdown">
+                <li><Link className="dropdown-item" to="/sale">Sales</Link></li>
+                <li><Link className="dropdown-item" to="/sale/create">Add A Sale</Link></li>
+                <li><Link className="dropdown-item" to="/sale/history">Sales History</Link></li>
+                <li><Link className="dropdown-item" to="/customer">Customers</Link></li>
+                <li><Link className="dropdown-item" to="/customer/create">Add A Customer</Link></li>
+              </ul>
+            </li>
+
+          </ul>
         </div>
-      </nav>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-        <div className="container-fluid">
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/manufacturer/create">Create A Manufacturer</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/manufacturer">Manufacturers</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/sale">Sales</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/sale/create">Add A Sale</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/salesperson">Salespeople</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/salesperson/create">Add A Salesperson</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/sale/history">Sales History</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/customer">Customers</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="navbar-brand" to="/customer/create">Add A Customer</NavLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   )
 }
 

@@ -10,7 +10,6 @@ function ScheduledAppointmentList() {
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             setAppointments(data.appointments)
         }
     }
@@ -63,6 +62,13 @@ function ScheduledAppointmentList() {
         getSoldData()
     }, [])
 
+    function handleDelete(id) {
+
+        fetch(`http://localhost:8080/api/appointments/${id}/`, {
+            method: 'delete',
+        });
+    }
+
     return (
         <table className="table table-striped">
             <thead>
@@ -91,6 +97,12 @@ function ScheduledAppointmentList() {
                                 <td>
                                     <button className="btn btn-primary" onClick={() => cancelAppointment(appointment.id)}>Cancel</button>
                                     <button className="btn btn-primary" onClick={() => finishAppointment(appointment.id)}>Finish</button>
+                                    <span className='m-3'>
+                                        <button onClick={() => handleDelete(appointment.id)} className="btn btn-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                            </svg></button>
+                                    </span>
                                 </td>
                             </tr>
                         );
@@ -105,8 +117,14 @@ function ScheduledAppointmentList() {
                                 <td>{appointment.technician}</td>
                                 <td>{appointment.reason}</td>
                                 <td>
-                                    <button className="btn btn-primary" onClick={() => cancelAppointment(appointment.id)}>Cancel</button>
-                                    <button className="btn btn-primary" onClick={() => finishAppointment(appointment.id)}>Finish</button>
+                                    <button className="btn btn-primary btn-sm" onClick={() => cancelAppointment(appointment.id)}>Cancel</button>
+                                    <button className="btn btn-primary btn-sm" onClick={() => finishAppointment(appointment.id)}>Finish</button>
+                                </td>
+                                <td>
+                                    <button onClick={() => handleDelete(appointment.id)} className="btn btn-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                        </svg></button>
                                 </td>
                             </tr>
                         );

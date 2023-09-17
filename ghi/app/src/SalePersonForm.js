@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SalesPersonForm() {
     const [formData, setFormData] = useState({
@@ -6,10 +7,9 @@ function SalesPersonForm() {
         last_name: '',
         employee_id: '',
     })
+    const navigate = useNavigate();
 
-    useEffect(() => {
-
-    }, []);
+    useEffect(() => { }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -34,6 +34,7 @@ function SalesPersonForm() {
                 employee_id: '',
             });
         }
+        navigate('/salesperson');
     }
     const handleFormChange = (e) => {
         const value = e.target.value;

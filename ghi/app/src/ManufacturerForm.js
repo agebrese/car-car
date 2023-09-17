@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ManufacturerForm() {
     const [formData, setFormData] = useState({
         name: '',
     })
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -31,6 +33,7 @@ function ManufacturerForm() {
 
             });
         }
+        navigate('/manufacturer');
     }
     const handleFormChange = (e) => {
         const value = e.target.value;

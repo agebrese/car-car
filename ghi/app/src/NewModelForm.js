@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function NewModelForm() {
     const [manufacturers, setManufacturers] = useState([]);
     const [name, setName] = useState('');
     const [picture_url, setPicture_Url] = useState('');
     const [manufacturer_id, setManufacturer] = useState('');
+    const navigate = useNavigate();
 
     const fetchData = async () => {
         const url = 'http://localhost:8100/api/manufacturers/';
@@ -59,6 +61,7 @@ function NewModelForm() {
             setPicture_Url('');
             setManufacturer('');
         }
+        navigate('/models/all');
     }
 
     return (

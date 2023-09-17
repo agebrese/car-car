@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SaleForm() {
     const [sales, setSales] = useState([]);
@@ -12,6 +13,8 @@ function SaleForm() {
         price: '',
 
     })
+    const navigate = useNavigate();
+
     const getAutoData = async () => {
         const url = "http://localhost:8100/api/automobiles/"
 
@@ -100,6 +103,9 @@ function SaleForm() {
                 price: '',
             });
         }
+
+        navigate('/sale');
+
     }
     const handleFormChange = (e) => {
         const value = e.target.value;
@@ -163,6 +169,7 @@ function SaleForm() {
                                 </div>
                             </div>
                             <button className="btn btn-primary">Create</button>
+
                         </form>
                     </div>
                 </div>

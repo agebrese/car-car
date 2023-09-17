@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CustomerForm() {
     const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ function CustomerForm() {
         address: '',
     })
     const [phone_number, setPhoneNumber] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
     }, []);
@@ -21,7 +24,6 @@ function CustomerForm() {
         const data = {}
         data.phone_number = phone_number
         let subData = Object.assign(formData, data)
-        console.log(subData)
         const fetchConfig = {
             method: 'post',
             body: JSON.stringify(subData),
@@ -42,6 +44,7 @@ function CustomerForm() {
             setPhoneNumber('')
 
         }
+        navigate('/customer');
     }
     const handleFormChange = (e) => {
         const value = e.target.value;

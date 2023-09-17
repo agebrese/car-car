@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function NewAppointmentForm() {
     const [technicians, setTechnicians] = useState([]);
@@ -8,6 +9,7 @@ function NewAppointmentForm() {
     const [vin, setVin] = useState('');
     const [customer, setCustomer] = useState('');
     const [technician, setTechnician] = useState('');
+    const navigate = useNavigate();
 
     const fetchData = async () => {
         const url = 'http://localhost:8080/api/technicians/';
@@ -54,6 +56,7 @@ function NewAppointmentForm() {
             setCustomer('');
             setTechnician('');
         }
+        navigate('/appointments/scheduled');
 
     }
 

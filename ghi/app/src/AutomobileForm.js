@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function AutomobileForm() {
     const [models, setModels] = useState([]);
@@ -8,6 +9,7 @@ function AutomobileForm() {
         vin: '',
         model_id: '',
     })
+    const navigate = useNavigate();
 
     const getData = async () => {
         const url = "http://localhost:8100/api/models/"
@@ -50,6 +52,7 @@ function AutomobileForm() {
 
             });
         }
+        navigate('/automobiles/all');
     }
     const handleFormChange = (e) => {
         const value = e.target.value;
